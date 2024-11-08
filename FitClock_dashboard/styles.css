@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #222;
+    color: #fff;
+}
+
+/* Grid container */
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 20px;
+    width: 80%;
+    max-width: 600px;
+    background-color: darkblue;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+/* Container styling */
+.container {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+/* Flex layout for weather and sensors */
+#weather, #sensors {
+    flex-direction: row;  /* Align items horizontally */
+    justify-content: center; /* Center items horizontally */
+    align-items: center;  /* Center items vertically */
+}
+
+.weather-icon, .meditation-icon {
+    margin-left: 10px;  /* Adds space between the text and icon */
+    font-size: 2rem;  /* Adjust the size of the icon */
+}
+
+/* Individual container styles */
+/*#main_dashboard{
+    background-color: darkblue;
+}
+*/
+#weather {
+    background-color: #4A90E2;
+}
+
+#clock {
+    background-color: #34495E;
+}
+
+#sensors {
+    background-color: #27AE60;
+}
+
+#notifications {
+    background-color: #E74C3C;
+}
+
+/* Sample text styling */
+.temp, .time, .sensor-data, .notification {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 0.9em;
+    margin-top: 10px;
+    opacity: 0.8;
+}

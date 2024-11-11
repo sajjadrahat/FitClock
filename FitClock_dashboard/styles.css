@@ -14,8 +14,8 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 2 columns */
     gap: 20px;
-    width: 80%;
-    max-width: 600px;
+    width: 100vw;
+    height: 100vh;
     background-color: darkblue;
     padding: 40px;
     border-radius: 10px;
@@ -41,7 +41,7 @@ body {
 
 .weather-icon, .meditation-icon {
     margin-left: 10px;  /* Adds space between the text and icon */
-    font-size: 2rem;  /* Adjust the size of the icon */
+    font-size: 5rem;  /* Adjust the size of the icon */
 }
 
 /* Individual container styles */
@@ -55,6 +55,7 @@ body {
 
 #clock {
     background-color: #34495E;
+    justify-content: center;
 }
 
 #sensors {
@@ -63,16 +64,21 @@ body {
 
 #notifications {
     background-color: #E74C3C;
+    justify-content: center;
 }
 
 /* Sample text styling */
-.temp, .time, .sensor-data, .notification {
-    font-size: 1.5em;
+.temp, .time, .sensor-data {
+    font-size: 6em;
+    font-weight: bold;
+}
+.notification {
+    font-size: 3em;
     font-weight: bold;
 }
 
 .description {
-    font-size: 0.9em;
+    font-size: 2em;
     margin-top: 10px;
     opacity: 0.8;
 }

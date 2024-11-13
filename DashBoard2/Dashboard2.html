@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Template</title>
+    <link rel="stylesheet" href="graphs_styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sensor Data Charts -->
+        <div class="sensor-data">
+            <h2>Sensor Data Charts</h2>
+            <div class="chart" id="sensor-chart">
+                <!-- Placeholder for sensor data chart -->
+                <p>Chart with sensor data will appear here.</p>
+            </div>
+        </div>
 
+        <!-- Physical Activity Graph -->
+        <div class="activity-graph">
+            <h2>Weekly Physical Activity</h2>
+            <div class="chart" id="activity-chart">
+                <!-- Placeholder for weekly activity graph -->
+                <p>Graph for last week's activity will appear here.</p>
+            </div>
+        </div>
+
+        <!-- Activity Status -->
+        <div class="activity-status">
+            <h2>Activity Status</h2>
+            <div class="status-info">
+                <!-- Placeholder for activity status -->
+                <p>Status: <span id="status">Loading...</span></p>
+        </div>
+    </div>
+
+    <!-- Current Sitting time -->
+    <div class="realtime-status">
+        <h2>Real-Time Status</h2>
+        <div class="status-info" >
+            <!-- Placeholder for Current Sitting time -->
+            <p> <span id="current-status">Idle</span></p>
+        </div>
+    </div>
+    </div>
+<!-- Link to external JS file -->
+<script src="graphs_script.js" defer></script>
+</body>
+</html>

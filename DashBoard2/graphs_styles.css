@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+html, body {
+    height: 100%;
+}
+/* Container styling */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100%;
+}
+
+.dashboard-container > div {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Allow each container to grow */
+    min-height: 300px; /* Set a minimum height */
+}
+
+.dashboard-container > div:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Specific container styles */
+.sensor-data, .activity-graph, .activity-status, .realtime-status{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    min-height: 100%;
+}
+
+.chart, .status-info {
+    text-align: center;
+    width: 100%;
+    flex-grow: 1; /* Allow the charts to grow */
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    color: #555;
+}
+
+#current-status {
+    font-size: 2em;
+    color: red;
+}
+
+.chart {
+    height: 400px; /* Increase the height for the charts */
+    background-color: #f1f1f1;
+}
+
+/*Graph Animation*/
+.chart {
+    border: 2px solid #ddd;
+}
+
+.status-info {
+    height: 150px;
+}
+
+.status-info p {
+    font-size: 1.2em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-container {
+        grid-template-columns: 1fr; /* Single column layout on smaller screens */
+    }
+    .chart {
+        height: 250px; /* Decrease height for small screens */
+    }
+}

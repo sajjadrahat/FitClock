@@ -27,7 +27,7 @@ html, body {
     justify-content: center;
     align-items: center;
     flex-grow: 1; /* Allow each container to grow */
-    min-height: 300px; /* Set a minimum height */
+    min-height: 300px; 
 }
 
 .dashboard-container > div:hover {
@@ -42,7 +42,6 @@ h2 {
     color: #333;
 }
 
-/* Specific container styles */
 .sensor-data, .activity-graph, .activity-status, .realtime-status{
     display: flex;
     flex-direction: column;

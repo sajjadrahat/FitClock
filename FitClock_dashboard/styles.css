@@ -34,21 +34,16 @@ body {
 }
 /* Flex layout for weather and sensors */
 #weather, #sensors {
-    flex-direction: row;  /* Align items horizontally */
-    justify-content: center; /* Center items horizontally */
-    align-items: center;  /* Center items vertically */
+    flex-direction: row;  
+    justify-content: center; 
+    align-items: center;  
 }
 
 .weather-icon, .meditation-icon {
-    margin-left: 10px;  /* Adds space between the text and icon */
-    font-size: 5rem;  /* Adjust the size of the icon */
+    margin-left: 10px;  
+    font-size: 5rem;  
 }
 
-/* Individual container styles */
-/*#main_dashboard{
-    background-color: darkblue;
-}
-*/
 #weather {
     background-color: #4A90E2;
 }

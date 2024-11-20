@@ -26,8 +26,8 @@ function updateTime() {
     });
 
     // Update the clock container
-    document.getElementById('time').textContent = helsinkiTime;  
-    document.getElementById('description').textContent = helsinkiDate;  
+    document.getElementById('time').textContent = helsinkiTime;  // Update time
+    document.getElementById('description').textContent = helsinkiDate;  // Update description
 }
 
 // Update time every second

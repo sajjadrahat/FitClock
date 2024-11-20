@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,28 +11,50 @@
 <div class="dashboard" id="main_dashboard">
     <!-- Weather Container -->
     <div class="container" id="weather">
-        <div class="temp">25°C</div>
-        <div class="weather-icon">🌥️</div>
+        <!-- Room Temperature (Sensor data) -->
+        <div class="weather-box" id="room-temp">
+            <div class="icon">🏠</div>
+            <h3>Room Temp</h3>
+            <div class="temp-value" id="room-temperature">22°C</div>
+        </div>
+        <!-- Outdoor Temperature (OpenWeatherAPI data) -->
+        <div class="weather-box" id="outside-temp">
+            <div class="icon">☁️</div>
+            <h3>Outside Temp</h3>
+            <div class="temp-value" id="outside-temperature">Loading...</div>
+        </div>
+        <!-- Humidity (Sensor data) -->
+        <div class="weather-box" id="humidity">
+            <div class="icon">💧</div>
+            <h3>Humidity</h3>
+            <div class="humidity-value" id="humidity-value">50%</div>
+        </div>
     </div>
+
 
     <!-- Clock Container -->
     <div class="container" id="clock">
-        <div class="time" id="time">12:00</div>
+        <div class="time" id="time"></div>
         <div class="description" id="description">Sunday, Jan 1, 2024</div>
     </div>
 
     <!-- Sensors Container -->
     <div class="container" id="sensors">
-        <div class="sensor-data">10:24:00</div>
-        <div class="meditation-icon">🧘</div>
+        <div class="sensor-data">00:25:04</div>
+        <div class="meditation-icon" id="meditation-icon">🧘</div>
     </div>
 
     <!-- Notifications Container -->
     <div class="container" id="notifications">
-        <div class="notification">5 minutes left for a break!</div>
+        <div class="notification">Rise up and move around!</div>
     </div>
 </div>
-<!-- Link to external JS file -->
-<script src="FitClock_script.js" defer></script>
+<!-- Link to external JS file to show real-time -->
+<script src="FitClock_real_time.js" defer></script>
+<!-- Link to second JS file to show temperature in Rovaniemi -->
+<script src="OpenWeatherAPI.js" defer></script>
+<script src="Emoji_Icon_change.js" defer></script>
+<script src="Notification_change.js" defer></script>
+
 </body>
 </html>

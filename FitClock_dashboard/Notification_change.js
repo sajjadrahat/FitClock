@@ -11,24 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const moderateBreakMessages = [
         'Time for a short walk! Take a break for %d minutes!',
         'Go have a snack! Take a break for %d minutes!',
-        'Time for some exercise! Take a break for %d minutes!',
-        'Go outside for some fresh air! Take a break for %d minutes!',
-        'You have been sitting for too long, time to move! Take a break for %d minutes!'
+        'Time for some exercise! Take a break for %d minutes!'
     ];
 
     const urgentBreakMessages = [
         'Get up and move NOW! Take a break for %d minutes!',
         'You’ve been sitting for WAY too long! Take a break for %d minutes!',
-        'You need to take a break NOW or your health will suffer! %d minutes of movement!',
-        'STOP SITTING! Take a break for %d minutes RIGHT NOW!',
-        'You’ve been sitting for hours! Get moving and take a %d minute break!'
-    ];
-
-    const breakBenefitsMessages = [
-        'Taking breaks from sitting can boost performance.',
-        'Taking breaks helps to recharge throughout the day.',
-        'Not sitting for extended periods prevents future health issues.',
-        'Walking around is the most efficient way to pause sitting.'
+        'STOP SITTING! Take a break for %d minutes RIGHT NOW!'
     ];
 
     const greetings = {
@@ -38,9 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     let sittingTime = 0; // Simulated sitting time in minutes
-    let breakTime = 2;
-    let breakReminderInterval = null;
-    let timerColorChanged = false;
+    let currentMessageIndex = { gentle: 0, moderate: 0, urgent: 0 };
+
+    // Function to get the next message in the sequence
+    function getNextMessage(messages, type) {
+        const index = currentMessageIndex[type];
+        const message = messages[index];
+        currentMessageIndex[type] = (index + 1) % messages.length;
+        return message;
+    }
 
     // Calculate greeting based on the time of day
     function getGreeting() {
@@ -50,82 +45,70 @@ document.addEventListener("DOMContentLoaded", () => {
         return greetings.evening;
     }
 
-    // Display a notification
+    // Display a notification with fade animation
     function showNotification(message, breakDuration) {
         const formattedMessage = message.replace('%d', breakDuration);
-        notificationElement.textContent = formattedMessage;
 
+        // Trigger fade-out
+        notificationElement.classList.add('fade-out');
         setTimeout(() => {
-            notificationElement.textContent = getGreeting();
-        }, 3000);
+            // Change the text after fade-out completes
+            notificationElement.textContent = formattedMessage;
+            notificationElement.classList.remove('fade-out');
+
+            notificationElement.classList.add('fade-in');
+            setTimeout(() => {
+                notificationElement.classList.remove('fade-in');
+
+                // After 3 seconds, fade back to the greeting
+                setTimeout(() => {
+                    resetToGreeting();
+                }, 3000);
+            }, 1000); // Match fade-in duration
+        }, 1000); // Match fade-out duration
+    }
+
+    // Reset notification to the greeting
+    function resetToGreeting() {
+        const greeting = getGreeting();
+
+        // Trigger fade-out
+        notificationElement.classList.add('fade-out');
+        setTimeout(() => {
+            notificationElement.textContent = greeting;
+            notificationElement.classList.remove('fade-out');
+
+            // Trigger fade-in for greeting
+            notificationElement.classList.add('fade-in');
+            setTimeout(() => {
+                notificationElement.classList.remove('fade-in');
+            }, 1000); // Match fade-in duration
+        }, 1000); // Match fade-out duration
     }
 
     // Handle sitting time and send appropriate reminders
     function handleSittingTime() {
         if (sittingTime >= 120) {
-            showNotification(urgentBreakMessages[0], 5);
-            breakTime = 5;
+            const message = getNextMessage(urgentBreakMessages, 'urgent');
+            showNotification(message, 5);
         } else if (sittingTime >= 60) {
-            showNotification(moderateBreakMessages[1], 5);
-            breakTime = 5;
+            const message = getNextMessage(moderateBreakMessages, 'moderate');
+            showNotification(message, 5);
         } else if (sittingTime >= 30) {
-            showNotification(gentleBreakMessages[1], 2);
-            breakTime = 2;
-        } else if (sittingTime < 30) {
-            notificationElement.textContent = getGreeting();
+            const message = getNextMessage(gentleBreakMessages, 'gentle');
+            showNotification(message, 2);
+        } else {
+            resetToGreeting();
         }
-    }
-
-    // Display a random break benefit
-    function showBreakBenefit() {
-        const randomBenefit = breakBenefitsMessages[Math.floor(Math.random() * breakBenefitsMessages.length)];
-        showNotification(randomBenefit, 0);
-    }
-
-    // Change timer color for extended sitting time
-    function handleSittingOvertime() {
-        if (sittingTime > 30 && !timerColorChanged) {
-            timeElement.classList.add('sitting-overtime');
-            timerColorChanged = true;
-        }
-    }
-
-    // Start reminders at intervals based on sitting time
-    function startBreakReminder() {
-        if (breakReminderInterval) clearInterval(breakReminderInterval);
-
-        breakReminderInterval = setInterval(() => {
-            if (sittingTime >= 30) {
-                if (sittingTime >= 120) {
-                    showNotification(urgentBreakMessages[2], breakTime);
-                } else if (sittingTime >= 60) {
-                    showNotification(urgentBreakMessages[3], breakTime);
-                } else if (sittingTime >= 30) {
-                    showNotification(gentleBreakMessages[1], breakTime);
-                }
-            }
-        }, 600000);
     }
 
     // Simulate sitting time increment
     setInterval(() => {
         sittingTime++;
         handleSittingTime();
-        handleSittingOvertime();
     }, 60000);
 
-    // Start break reminders after 30 minutes
-    setInterval(() => {
-        startBreakReminder();
-    }, 60000);
-
-    // Example: Show break benefits after 30 minutes
-    setTimeout(() => {
-        showBreakBenefit();
-    }, 1800000);
-
-    // For testing: simulate sitting time of 61 minutes. This data
-    // will come from Node-Red:
-    sittingTime =40;
+    // For testing: simulate sitting time of 45 minutes
+    sittingTime = 65;
     handleSittingTime();
 });

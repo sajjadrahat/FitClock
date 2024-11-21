@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const notificationElement = document.querySelector('.notification');
     const timeElement = document.getElementById('time');
+    const sensorDataElement = document.querySelector('.sensor-data');
 
     const gentleBreakMessages = [
         'Rise up and move around! Take a break for %d minutes!',
@@ -86,8 +87,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000); // Match fade-out duration
     }
 
+    function parseSittingTime() {
+        // Get the `sensor-data` element value
+        const sensorData = document.querySelector('.sensor-data').textContent;
+
+        // Parse the hh:mm:ss format
+        const [hours, minutes, seconds] = sensorData.split(':').map(Number);
+
+        // Convert to total minutes (ignore seconds for simplicity)
+        return hours * 60 + minutes;
+    }
+
     // Handle sitting time and send appropriate reminders
     function handleSittingTime() {
+
+        const sittingTime = parseSittingTime()
         if (sittingTime >= 120) {
             const message = getNextMessage(urgentBreakMessages, 'urgent');
             showNotification(message, 5);
@@ -102,13 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Simulate sitting time increment
-    setInterval(() => {
-        sittingTime++;
-        handleSittingTime();
-    }, 60000);
 
-    // For testing: simulate sitting time of 45 minutes
-    sittingTime = 65;
     handleSittingTime();
+
+    setInterval(() => {
+        handleSittingTime(); // Check and update sitting time reminders
+    }, 60000); // Every minute
 });

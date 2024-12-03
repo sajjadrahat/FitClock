@@ -2,6 +2,13 @@
 
 FitClock is an IoT-powered desk clock that promotes physical activity and healthy habits through reminders and activity tracking. With a sleek user interface, FitClock provides visual and audio prompts to remind users to stay active, hydrate, and avoid prolonged sitting. It leverages the ESP32 microcontroller with multiple sensors and an optional display for real-time feedback.
 
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=coHHTkpU8HU">
+    <img src="https://img.youtube.com/vi/coHHTkpU8HU/maxresdefault.jpg" alt="Watch the video" style="width:100%; max-width:800px;">
+  </a>
+</div>
+
+
 ## 📋 Project Overview
 
 - **Purpose**: To encourage regular movement, hydration, and posture breaks.

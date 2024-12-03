@@ -3,8 +3,7 @@ import time
 
 # List of known Wi-Fi networks with SSID in bytes and corresponding passwords
 WIFI_NETWORKS = {
-    b'Rahat\xe2\x80\x99s Network': "82060275",
-    b'IOTLABRA': "iotlabra2020",
+    b'Wifi_SSID': "Creds",
 }
 
 def connect_wifi():
